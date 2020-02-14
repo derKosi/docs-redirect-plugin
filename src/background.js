@@ -1,4 +1,4 @@
-const regex = /(.*docs.microsoft.com\/)([a-z][a-z]\-[a-z][a-z]]*)(\/.*)/g;
+const regex = /(.*.microsoft.com\/)([a-z][a-z]\-[a-z][a-z]]*)(\/.*)/g;
 
 function getFirstGroup(regexp, str) {
     return Array.from(str.matchAll(regexp), m => {
@@ -17,5 +17,5 @@ chrome.webRequest.onBeforeRequest.addListener(
             var newUrl = details.url.replace(regex, "$1en-us$3");
             return { redirectUrl: newUrl }
         } 
-      }, { urls: ['*://docs.microsoft.com/*'] }, ['blocking']
+      }, { urls: ['*://.microsoft.com/*'] }, ['blocking']
 );
